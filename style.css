@@ -14,6 +14,7 @@ body {
   height: 100px;
   border: 1px black solid;
   border-radius: 5px;
+  padding: 10px;
 }
 
 .button-section {
@@ -37,4 +38,16 @@ button {
 
 button:hover {
   background-color: #dedede;
+}
+
+.expression,
+.output {
+  text-align: end;
+  font-weight: bold;
+  min-height: 20px;
+  margin: 10px;
+}
+
+.output {
+  font-size: 2rem;
 }
