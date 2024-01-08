@@ -23,12 +23,20 @@ document.querySelector(".equals").addEventListener("click", () => {
     updateExpressionText(
       firstNumber + " " + operand + " " + secondNumber + " ="
     );
-    firstNumber = calculate(firstNumber, secondNumber, operand);
+    firstNumber = operate(firstNumber, secondNumber, operand);
 
     secondNumber = "";
     operand = null;
     updateOutputText(firstNumber);
   }
+});
+
+document.querySelector(".delete").addEventListener("click", () => {
+  firstNumber = "0";
+  operand = null;
+  secondNumber = "";
+  updateOutputText(firstNumber);
+  updateExpressionText("");
 });
 
 document.querySelector(".invert").addEventListener("click", () => {
@@ -49,6 +57,10 @@ document.querySelector(".cancel").addEventListener("click", () => {
   secondNumber = "";
   updateOutputText(firstNumber);
   updateExpressionText("");
+});
+
+document.querySelector(".dot").addEventListener("click", (e) => {
+  addDecimal(e);
 });
 
 //todo refactor code so number buttons and operand buttons have different listeners.s
@@ -76,7 +88,7 @@ function addOperand(e) {
     operand = e.target.textContent;
   } else {
     //executes if secondNumber is populated
-    let result = calculate(firstNumber, secondNumber, operand);
+    let result = operate(firstNumber, secondNumber, operand);
     firstNumber = result;
     operand = e.target.textContent;
     secondNumber = "";
@@ -86,9 +98,9 @@ function addOperand(e) {
   updateExpressionText(firstNumber + " " + operand);
 }
 
-function calculate(num1, num2, op) {
-  num1 = Number.parseInt(num1);
-  num2 = Number.parseInt(num2);
+function operate(num1, num2, op) {
+  num1 = Number(num1);
+  num2 = Number(num2);
   let result;
 
   switch (op) {
@@ -110,6 +122,23 @@ function calculate(num1, num2, op) {
   }
 
   return result;
+}
+
+function addDecimal(e) {
+  if (operand == null) {
+    if (!firstNumber.includes(".")) {
+      firstNumber += ".";
+      updateOutputText(firstNumber);
+    }
+  } else {
+    if (!secondNumber.includes(".")) {
+      if (secondNumber == "") {
+        secondNumber += "0";
+      }
+      secondNumber += ".";
+      updateOutputText(secondNumber);
+    }
+  }
 }
 
 function addition(num1, num2) {

@@ -2,11 +2,17 @@ body {
   background-color: #7a7;
 }
 
+footer,
+.header {
+  text-align: center;
+}
+
 .calculator {
   width: 400px;
   padding: 10px;
   background: #777;
   border-radius: 5px;
+  margin: auto;
 }
 
 .calc-screen {
@@ -20,6 +26,7 @@ body {
 .button-section {
   margin-top: 25px;
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(4, 95px);
   grid-template-rows: repeat(5, 95px);
   gap: 5px;
